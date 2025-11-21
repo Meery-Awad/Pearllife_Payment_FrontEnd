@@ -1,14 +1,33 @@
-img{
+img {
   width: 20rem;
 }
+
 .payment-widget {
   display: flex;
   justify-content: center;
   align-items: center;
 
- 
+   input {
+        padding: 0.5rem 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+
+        &:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+        }
+      }
+
+  label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+
   .payment-card {
-    background: rgb(255, 255, 255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     padding: 2.5rem 3rem;
     border-radius: 1rem;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -16,41 +35,17 @@ img{
     width: 420px;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     margin-bottom: 20px;
-  }
-
-  .amount-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #333;
-
-    span {
-      font-weight: 700;
-    }
-  }
-
-  p {
-    font-size: 1.1rem;
-    color: #555;
   }
 
   .user-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-bottom: 1.5rem;
 
     .form-group {
       display: flex;
       flex-direction: column;
-
-      label {
-        font-weight: 500;
-        margin-bottom: 0.3rem;
-        color: #333;
-      }
 
       input {
         padding: 0.6rem 0.8rem;
@@ -66,23 +61,87 @@ img{
           box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
         }
       }
-      
     }
-   
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .payment-option {
+        position: absolute;
+        left: 52%
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        input[type='checkbox'] {
+          accent-color: #007bff;
+
+        }
+      }
+
+      .payment-option {
+        font-weight: 400;
+        color: #555;
+      }
+    }
+
+    .extra-input {
+      display: flex;
+      flex-direction: column;
+
+     
+    }
+
+    .payment-due {
+      margin: 0.8rem 0;
+      
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: rgb(200, 184, 8);
+    }
+
+    .total-amount {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .proceed-btn {
+      padding: 10px;
+      margin-top: 0.8rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+
+    .req,
+    .error {
+      color: red;
+    }
+
+    .discrep {
+      color: #7e7e7e;
+      margin-bottom: 0.2rem;
+    }
   }
 
   .paymentWidgets {
     margin-top: 1.5rem;
   }
-  .req{
-    color: red;
-  }
-  .error{
-    color: gray;
-  }
-   .proceed-btn{
-        padding: 10px;
-      }
 }
 
 @keyframes fadeInUp {
@@ -90,6 +149,7 @@ img{
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

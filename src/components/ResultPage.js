@@ -13,16 +13,20 @@ export default function ResultPage() {
   const name = q.get('name') || '';
   const email = q.get('email') || '';
   const phone = q.get('phone') || '';
- 
+
   const amount = q.get('amount') || '';
-  
+  const firstOptionValue = q.get('firstOption') || 0;
+  const secondOptionValue= q.get('secondOption') || 0;
+  const extraValue = q.get('extra') || 0;
+  const currency = 'AED'; const paymentType = 'DB' 
+
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
     if (!resourcePath) return;
     const fetchStatus = async () => {
       try {
-        const res = await fetch('https://pearllifebackend.onrender.com/payment-status', {
+        const res = await fetch('http://localhost:5000/payment-status', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ resourcePath }),
@@ -30,14 +34,14 @@ export default function ResultPage() {
         const data = await res.json();
         setStatus(data);
 
-        const user = { name, email, phone, amount };
+        const user = { name, email, phone, amount , firstOptionValue, secondOptionValue,extraValue  , currency, paymentType };
 
-        await fetch('https://pearllifebackend.onrender.com/payment-notification', {
+        await fetch('http://localhost:5000/payment-notification', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ user}),
+          body: JSON.stringify({ user }),
         });
-       console.log('Payment email sent');
+        console.log('Payment email sent');
       } catch (error) {
         setStatus({ error: true, message: error.message });
         console.error('Failed to fetch status or send email:', error);
@@ -59,12 +63,12 @@ export default function ResultPage() {
         <div className="icon">✅</div>
         <h2>Payment completed successfully</h2>
         <p>Thank you, <strong>{name}</strong>, for choosing <strong>PEARLLIFE</strong>.</p>
-        <p>Amount Paid: <strong> 1495 £</strong></p>
+        <p>Amount Paid: <strong> £ {amount}</strong></p>
         <a href="https://www.pearllifefuneralservices.com/" className="custom-btn success-btn">
           Return to Homepage
         </a>
       </div>
-    ); 
+    );
   } else {
     const errorReason = status.result?.description || status.message || 'Unknown error';
     content = (

@@ -11,7 +11,7 @@ const reminders = (state = [], action) => {
     const [reload, setReload] = useState(false);
 
     // const serverUrl = 'http://localhost:5000'
-    // const serverUrl = 'https://madeformanners-backend.onrender.com'
+    // const serverUrl = 'https://pearllifebackend.onrender.com'
 
     return {
       Loading, setLoading,
